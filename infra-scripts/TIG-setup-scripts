@@ -1,0 +1,133 @@
+# TIG server setup
+	# Ubuntu Server
+		sudo apt update
+		sudo apt upgrade
+		sudo apt install ufw
+		sudo ufw allow ssh
+		sudo ufw enable
+	# InfluxDB (influser / RII.covid-19)
+		# line below is for Ubuntu Server 18.04, needs to be changed for other versions
+		echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+		sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+		sudo apt update
+		sudo apt install influxdb
+		# configure influxdb (sudo nano /etc/influxdb/influxdb.conf)
+			reporting-disabled = true
+			# bind-address = "127.0.0.1:8088"
+			[data]
+				dir = "/var/lib/influxdb/data" # directory for TSM files, change for production deployments
+				wal-dir = "/var/lib/influxdb/wal" # directory for WAL files, change for production deployments
+			[monitor]
+				store-enabled = true
+				store-database = "_internal"
+			[http]
+				enabled = true
+				auth-enabled = true
+				
+		sudo systemctl enable --now influxdb
+		# sudo ufw allow from 0.0.0.0/24 to any port 8086
+		sudo ufw allow 8086/tcp
+		sudo nano /etc/influxdb/influxdb.conf --> [http] auth-enabled = true
+		sudo systemctl restart influxdb
+		curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER influser WITH PASSWORD 'RII.covid-19' WITH ALL PRIVILEGES"
+		curl -G http://localhost:8086/query -u influser:RII.covid-19 --data-urlencode "q=SHOW DATABASES"
+	# Grafana (ADMIN: admin / RII.covid-20; USER: AshayC / Welcome@1; HankT / Iotworks...123) : http://rii-tig.iotworks.solutions:3000/?orgId=1
+		sudo apt install -y gnupg2 curl  software-properties-common
+		curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+		sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+		sudo apt update
+		sudo apt -y install grafana
+		# configure for globals, inputs and outputs (/etc/telegraf/telegraf.conf)
+			##
+		sudo systemctl enable --now grafana-server
+		# sudo ufw allow from 0.0.0.0/24 to any port 3000
+		sudo ufw allow 3000/tcp
+		# browse to server: http://0.0.0.0:3000 and change defaults:
+			password: admin:admin --> admin:RII.covid-20
+			preferences: Organization, Theme, Timezone
+		# install additional plugins/applications
+			sudo grafana-cli plugins install raintank-worldping-app
+			sudo grafana-cli plugins install grafana-clock-panel
+			sudo grafana-cli plugins install agenty-flowcharting-panel
+			sudo grafana-cli plugins install natel-influx-admin-panel
+			sudo grafana-cli plugins install grafana-polystat-panel
+			sudo grafana-cli plugins install grafana-simple-json-datasource
+			sudo grafana-cli plugins install grafana-strava-datasource
+			sudo grafana-cli plugins install alexandra-trackmap-panel
+			sudo grafana-cli plugins install petrslavotinek-carpetplot-panel
+		# grafana package details
+			# Installs binary to /usr/sbin/grafana-server
+			# Installs Init.d script to /etc/init.d/grafana-server
+			# Creates default file (environment vars) to /etc/default/grafana-server
+			# Installs configuration file to /etc/grafana/grafana.ini
+			# Installs systemd service (if systemd is available) name grafana-server.service
+			# The default configuration sets the log file at /var/log/grafana/grafana.log
+			# The default configuration specifies a sqlite3 db at /var/lib/grafana/grafana.db
+			# Installs HTML/JS/CSS and other Grafana files at /usr/share/grafana
+	# Telegraf ( / )
+		# NOT required if already done for installing INFLUXDB
+		# line below is for Ubuntu Server 18.04, needs to be changed for other versions
+		# echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+		# sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+		sudo apt -y install telegraf
+		# configure for globals, inputs and outputs (/etc/telegraf/telegraf.conf)
+			[global_tags]
+				project = "COVID-19"
+			[agent]
+				interval = "10s"
+				round_interval = true
+				metric_batch_size = 1000
+				metric_buffer_limit = 10000
+				collection_jitter = "0s"
+				flush_interval = "10s"
+				flush_jitter = "0s"
+				precision = "" 
+				hostname = "" # uses os.Hostname if omitted
+				omit_hostname = false
+			[[outputs.influxdb]]
+				urls = ["http://127.0.0.1:8086"]
+				database = "test" # "systemhealth"
+				retention_policy = "" # default retention policy
+				user_agent = "telegraf"
+				username = "influser"
+				password = "RII.covid-19"
+				#
+				# use certs or more secure option
+				#
+			[[inputs.cpu]]
+				[[inputs.cpu]]
+					percpu = true
+					totalcpu = true
+					collect_cpu_time = false
+					report_active = false
+			[[inputs.disk]]
+				ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
+			[[inputs.io]]
+			[[inputs.mem]]
+			[[inputs.net]]
+			[[inputs.system]]
+				fielddrop = ["uptime_format"]
+			[[inputs.swap]]
+			[[inputs.netstat]]
+			[[inputs.processes]]
+			[[inputs.kernel]]
+			[[inputs.internal]] # metrics of telegraf itself
+				collect_memstats = true
+			[[inputs.interrupts]] 
+				cpu_as_tag = false
+			[[inputs.net_response]]
+				protocol = "tcp"
+				address = "localhost:80"
+				fielddrop = ["result_type", "string_found"]
+			[[inputs.ping]]
+				urls = ["rii-pricechopper-portal.westus.cloudapp.azure.com", "rii-demo-portal.westus.cloudapp.azure.com", "thingworxvm.eastus2.cloudapp.azure.com"]
+				method = "native"
+				count = 1
+				ping_interval = 60.0
+				timeout = 2.0
+				deadline = 10
+			# 
+			# to add - mongodb, elasticsearch, influxdb, azure monitor, aws cloudwatch, nginx, nvidia_smi, operweathermap, procstat, lm-sensors, 
+			# 
+		telegraf -config /etc/telegraf/telegraf.conf -test
+		sudo systemctl enable --now telegraf 
