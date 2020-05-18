@@ -8,6 +8,42 @@
 //		* SingleStat
 // -----------------------------------
 {
+  "__inputs": [
+    {
+      "name": "DS_SYSTEMHEALTH",
+      "label": "systemhealth",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "6.7.3"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -53,7 +89,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 1,
       "format": "s",
       "gauge": {
@@ -160,7 +196,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": null,
       "format": "short",
       "gauge": {
@@ -269,7 +305,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": null,
       "format": "short",
       "gauge": {
@@ -382,7 +418,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -501,7 +537,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": null,
       "format": "short",
       "gauge": {
@@ -614,7 +650,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 1,
       "format": "decbytes",
       "gauge": {
@@ -732,7 +768,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -858,7 +894,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": null,
       "format": "short",
       "gauge": {
@@ -973,7 +1009,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -1098,7 +1134,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": null,
       "format": "short",
       "gauge": {
@@ -1223,7 +1259,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 5,
       "fillGradient": 0,
       "gridPos": {
@@ -1409,7 +1445,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1533,7 +1569,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1671,7 +1707,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1794,7 +1830,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1932,7 +1968,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2067,7 +2103,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 5,
       "fillGradient": 0,
       "gridPos": {
@@ -2189,7 +2225,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2337,7 +2373,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 5,
       "gridPos": {
         "h": 7,
@@ -2445,7 +2481,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 5,
       "gridPos": {
         "h": 7,
@@ -2568,7 +2604,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "gridPos": {
         "h": 10,
@@ -2680,7 +2716,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "gridPos": {
         "h": 10,
@@ -2792,7 +2828,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "gridPos": {
         "h": 10,
@@ -2904,7 +2940,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "gridPos": {
         "h": 10,
@@ -3016,7 +3052,7 @@
     {
       "aliasColors": {},
       "bars": false,
-      "datasource": "InfluxDB-test",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "fill": 1,
       "gridPos": {
         "h": 10,
@@ -3139,7 +3175,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "InfluxDB-test",
+        "datasource": "${DS_SYSTEMHEALTH}",
         "definition": "",
         "hide": 0,
         "includeAll": false,
@@ -3162,7 +3198,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "InfluxDB-test",
+        "datasource": "${DS_SYSTEMHEALTH}",
         "definition": "",
         "hide": 0,
         "includeAll": true,
@@ -3185,7 +3221,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "InfluxDB-test",
+        "datasource": "${DS_SYSTEMHEALTH}",
         "definition": "",
         "hide": 0,
         "includeAll": true,
@@ -3208,7 +3244,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "InfluxDB-test",
+        "datasource": "${DS_SYSTEMHEALTH}",
         "definition": "",
         "hide": 0,
         "includeAll": true,
@@ -3260,7 +3296,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Telegraf & Influx Windows Host Overview",
+  "title": "Windows System Health",
   "uid": "OhTGdzRGk",
   "variables": {
     "list": []

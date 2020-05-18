@@ -2,7 +2,7 @@
 //	Stack: 
 //	- Telegraf: 
 //	- InfluxDB: 1.0.0
-//	- Grafana 6.3.0
+//	- Grafana 6.7.3
 //		* Graph
 //		* Text
 //		* SingleStat
@@ -10,8 +10,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_INFLUXDB-TEST",
-      "label": "InfluxDB-test",
+      "name": "DS_SYSTEMHEALTH",
+      "label": "systemhealth",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -68,7 +68,7 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -90,7 +90,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -210,7 +210,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 1,
       "description": "(was LA Medium)",
       "editable": true,
@@ -332,7 +332,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -453,7 +453,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -574,7 +574,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -695,7 +695,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "format": "percent",
@@ -827,7 +827,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "format": "percent",
@@ -947,7 +947,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -1068,7 +1068,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -1195,7 +1195,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "decimals": 2,
       "editable": true,
       "error": false,
@@ -1316,7 +1316,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1334,7 +1334,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -1474,7 +1474,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1620,7 +1620,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1760,7 +1760,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1958,7 +1958,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2151,7 +2151,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2300,7 +2300,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2434,7 +2434,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2448,7 +2448,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -2583,7 +2583,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2734,7 +2734,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -2868,7 +2868,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -3061,7 +3061,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3075,7 +3075,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -3216,7 +3216,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 0,
@@ -3619,7 +3619,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "decimals": 0,
           "editable": true,
           "error": false,
@@ -3897,7 +3897,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -4288,7 +4288,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -4681,7 +4681,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4695,7 +4695,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -4895,7 +4895,7 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -5094,7 +5094,7 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "decimals": 1,
           "editable": true,
           "error": false,
@@ -5289,7 +5289,7 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -5485,7 +5485,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5499,7 +5499,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -5635,7 +5635,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -5774,7 +5774,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5788,7 +5788,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -5984,7 +5984,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -6180,7 +6180,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -6378,7 +6378,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6392,7 +6392,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -6547,7 +6547,7 @@
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -6759,7 +6759,7 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB-TEST}",
+      "datasource": "${DS_SYSTEMHEALTH}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6773,7 +6773,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -6906,7 +6906,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -7039,7 +7039,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -7172,7 +7172,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_INFLUXDB-TEST}",
+          "datasource": "${DS_SYSTEMHEALTH}",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -7370,10 +7370,10 @@
         "allFormat": "glob",
         "current": {
           "selected": false,
-          "text": "InfluxDB-test",
-          "value": "InfluxDB-test"
+          "text": "systemhealth",
+          "value": "systemhealth"
         },
-        "datasource": "InfluxDB-test",
+        "datasource": "systemhealth",
         "hide": 0,
         "includeAll": false,
         "label": "",
@@ -7456,7 +7456,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_INFLUXDB-TEST}",
+        "datasource": "${DS_SYSTEMHEALTH}",
         "definition": "",
         "hide": 0,
         "includeAll": false,

@@ -65,69 +65,72 @@
 			# The default configuration specifies a sqlite3 db at /var/lib/grafana/grafana.db
 			# Installs HTML/JS/CSS and other Grafana files at /usr/share/grafana
 	# Telegraf ( / )
-		# NOT required if already done for installing INFLUXDB
-		# line below is for Ubuntu Server 18.04, needs to be changed for other versions
-		# echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
-		# sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
-		sudo apt -y install telegraf
-		# configure for globals, inputs and outputs (/etc/telegraf/telegraf.conf)
-			[global_tags]
-				project = "COVID-19"
-			[agent]
-				interval = "10s"
-				round_interval = true
-				metric_batch_size = 1000
-				metric_buffer_limit = 10000
-				collection_jitter = "0s"
-				flush_interval = "10s"
-				flush_jitter = "0s"
-				precision = "" 
-				hostname = "" # uses os.Hostname if omitted
-				omit_hostname = false
-			[[outputs.influxdb]]
-				urls = ["http://127.0.0.1:8086"]
-				database = "test" # "systemhealth"
-				retention_policy = "" # default retention policy
-				user_agent = "telegraf"
-				username = "influser"
-				password = "RII.covid-19"
-				#
-				# use certs or more secure option
-				#
-			[[inputs.cpu]]
-				[[inputs.cpu]]
-					percpu = true
-					totalcpu = true
-					collect_cpu_time = false
-					report_active = false
-			[[inputs.disk]]
-				ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
-			[[inputs.io]]
-			[[inputs.mem]]
-			[[inputs.net]]
-			[[inputs.system]]
-				fielddrop = ["uptime_format"]
-			[[inputs.swap]]
-			[[inputs.netstat]]
-			[[inputs.processes]]
-			[[inputs.kernel]]
-			[[inputs.internal]] # metrics of telegraf itself
-				collect_memstats = true
-			[[inputs.interrupts]] 
-				cpu_as_tag = false
-			[[inputs.net_response]]
-				protocol = "tcp"
-				address = "localhost:80"
-				fielddrop = ["result_type", "string_found"]
-			[[inputs.ping]]
-				urls = ["rii-pricechopper-portal.westus.cloudapp.azure.com", "rii-demo-portal.westus.cloudapp.azure.com", "thingworxvm.eastus2.cloudapp.azure.com"]
-				method = "native"
-				count = 1
-				ping_interval = 60.0
-				timeout = 2.0
-				deadline = 10
-			# 
-			# to add - mongodb, elasticsearch, influxdb, azure monitor, aws cloudwatch, nginx, nvidia_smi, operweathermap, procstat, lm-sensors, 
-			# 
-		telegraf -config /etc/telegraf/telegraf.conf -test
-		sudo systemctl enable --now telegraf 
+		Linux
+			# NOT required if already done for installing INFLUXDB
+			# line below is for Ubuntu Server 18.04, needs to be changed for other versions
+			# echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+			# sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+			sudo apt update
+			sudo apt -y install telegraf
+			# configure for globals, inputs and outputs (/etc/telegraf/telegraf.conf)
+				# to add - mongodb, elasticsearch, influxdb, azure monitor, aws cloudwatch, nginx, nvidia_smi, operweathermap, procstat, lm-sensors, 
+			telegraf -config /etc/telegraf/telegraf.conf -test
+			sudo systemctl enable --now telegraf
+		Windows
+			mkdir C:\Program Files\Telegraf
+			copy ~\Downloads\telegraf.* C:\Program Files\Telegraf
+			C:\"Program Files"\Telegraf\telegraf.exe --service install
+			# configure for globals, inputs and outputs (/etc/telegraf/telegraf.conf)
+			"C:\Program Files\Telegraf\telegraf.exe" --config "C:\Program Files\Telegraf\telegraf.conf" --test
+			net start telegraf
+	# Nginx 
+		sudo apt update
+		sudo apt install nginx
+		sudo ufw allow 'Nginx HTTP'
+		sudo ufw status
+		sudo systemctl status nginx
+		sudo mkdir -p /var/www/<domain_name>/html
+		sudo chown -R $USER:$USER /var/www/<domain_name>/html
+		sudo chmod -R 755 /var/www/<domain_name>
+		nano /var/www/<domain_name>/html/index.html
+			<html>
+				<head><title>Welcome to <domain_name>!</title></head>
+				<body><h1>Success!  The <domain_name> server block is working!</h1></body>
+			</html>
+		sudo nano /etc/nginx/sites-available/<domain_name>
+			server { listen 80;  root /var/www/<domain_name>/html;  index.html;  server_name <domain_name>;  location / { try_files $uri $uri/ =404; } }
+		sudo ln -s /etc/nginx/sites-available/<domain_name> /etc/nginx/sites-enabled/
+		sudo nano /etc/nginx/nginx.conf
+			http {  ...   server_names_hash_bucket_size 64;   ...   }
+		sudo nginx -t
+		sudo systemctl restart nginx
+	# CertBot SSL (www.iotworks.solutions, health.iotworks.solutions, tig.iotworks.solutions, tele.iotworks.solutions)
+		sudo add-apt-repository ppa:certbot/certbot
+		sudo apt install python-certbot-nginx
+		sudo ufw allow 'Nginx Full'
+		sudo ufw delete allow 'Nginx HTTP'
+		sudo ufw status
+		sudo certbot --nginx -d <domain_name> -d <sub_domain_names>
+			https://www.ssllabs.com/ssltest/analyze.html?d=<sub_domain_names> # One sub-domain at a time
+			Certificate chain: /etc/letsencrypt/live/<sub_domain_names>/fullchain.pem
+			Key: /etc/letsencrypt/live/<sub_domain_names>/privkey.pem
+			New/Update Cert: certbot "certonly"
+			Auto Renew: certbot renew"
+		sudo nginx -t
+		sudo systemctl restart nginx
+		
+		
+		
+Reading Material:
+	Windows Monitoring
+		https://thenewstack.io/monitoring-windows-services-with-grafana-influxdb-%E2%80%8Eand-telegraf/
+	Custom Metrics via Telegraf HTTP Plugin
+		https://medium.com/@itsHabib/send-metrics-to-influxdb-with-telegrafs-http-plugin-fe90ea3ddf46
+		https://blog.pythian.com/exporting-custom-metrics-influxdb/
+		https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_tutorial/
+		https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_reference/
+	InfluxDB Security
+		https://docs.influxdata.com/influxdb/v1.8/administration/https_setup/
+	True System Load
+		http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html
+	
